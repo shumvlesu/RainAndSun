@@ -1,8 +1,8 @@
-package com.shumikhin.rainandsun
+package com.shumikhin.rainandsun.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.shumikhin.rainandsun.ui.main.MainFragment
+import com.shumikhin.rainandsun.R
 
 class MainActivity : AppCompatActivity() {
 
