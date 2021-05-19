@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shumikhin.rainandsun.model.Repository
 import com.shumikhin.rainandsun.model.RepositoryImpl
+import com.shumikhin.rainandsun.viewmodel.AppState.Error
 import java.lang.Thread.sleep
 
 class MainViewModel(
@@ -24,8 +25,12 @@ class MainViewModel(
         liveDataToObserve.value = AppState.Loading
         Thread {
             sleep(1000)
-            //Если данные были получены, состояние меняется на Success.
-            liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocalStorage()))
+            val randomResult = (0..1).random()
+            if (randomResult == 1) {
+                //Если данные были получены, состояние меняется на Success.
+                liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocalStorage()))
+            } else liveDataToObserve.postValue(Error(Throwable()))
+
         }.start()
     }
 

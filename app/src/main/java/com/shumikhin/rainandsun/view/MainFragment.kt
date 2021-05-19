@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.shumikhin.rainandsun.R
+import com.shumikhin.rainandsun.R.string.*
 import com.shumikhin.rainandsun.databinding.MainFragmentBinding
 import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.viewmodel.AppState
@@ -47,6 +48,13 @@ class MainFragment : Fragment() {
         //С помощью метода observe() мы можем подписаться на изменения в LiveData и получать
         //обновлённые данные каждый раз, когда вызван один из методов для передачи данных в эту LiveData
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
+
+        //Назначаю слушатель при свайпе вниз
+        binding.swipeRefreshLayout.setOnRefreshListener() {
+            viewModel.getWeatherFromRemoteSource()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         //Первый запрос за погодой
         viewModel.getWeatherFromLocalSource()
     }
@@ -69,8 +77,8 @@ class MainFragment : Fragment() {
             }
             is AppState.Error -> {
                 binding.loadingLayout.visibility = View.GONE
-                Snackbar.make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Reload") { viewModel.getWeatherFromLocalSource() }
+                Snackbar.make(binding.mainView, error, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(getString(reload)) { viewModel.getWeatherFromLocalSource() }
                     .show()
             }
         }
