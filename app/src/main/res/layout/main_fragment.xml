@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
+                android:id="@+id/appBackground"
                 android:layout_width="280dp"
                 android:layout_height="280dp"
                 android:layout_marginStart="60dp"
@@ -33,7 +33,7 @@
                 android:id="@+id/cityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:textSize="40sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="21dp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+                app:layout_constraintEnd_toEndOf="@+id/appBackground"
                 app:layout_constraintTop_toBottomOf="@+id/cityName"
                 tools:text="lt/ln: 55.755826, 37.617299900000035" />
 
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/feels_like_label"
                 app:layout_constraintBottom_toBottomOf="@+id/feelsLikeValue"
                 app:layout_constraintEnd_toStartOf="@+id/feelsLikeValue"
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="2dp"
                 android:textSize="@dimen/feels_like_text_size"
                 android:textStyle="bold"
