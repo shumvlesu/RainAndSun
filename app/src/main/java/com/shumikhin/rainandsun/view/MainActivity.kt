@@ -2,9 +2,9 @@ package com.shumikhin.rainandsun.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.get
-import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.MainActivityBinding
+import com.shumikhin.rainandsun.view.details.DetailsFragment
+import com.shumikhin.rainandsun.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -13,14 +13,13 @@ class MainViewModel(
 ) : ViewModel() {
 
     fun getLiveData() = liveDataToObserve
-    fun getWeatherFromLocalSource() = getDataFromLocalSource()
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource()
-
+    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
+    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
 
     // Запрос осуществляется асинхронно в отдельном потоке. Как только
     //поток просыпается, мы передаём в нашу LiveData какие-то данные через метод postValue. Если
     //данные передаются в основном потоке, используйте метод setValue.
-    private fun getDataFromLocalSource() {
+    private fun getDataFromLocalSource(isRussian: Boolean) {
         //Ставим статус в загрузку.
         liveDataToObserve.value = AppState.Loading
         Thread {
@@ -28,7 +27,12 @@ class MainViewModel(
             val randomResult = (0..1).random()
             if (randomResult == 1) {
                 //Если данные были получены, состояние меняется на Success.
-                liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocalStorage()))
+                liveDataToObserve.postValue(
+                    AppState.Success(
+                        if (isRussian)
+                            repositoryImpl.getWeatherFromLocalStorageRus() else repositoryImpl.getWeatherFromLocalStorageWorld()
+                    )
+                )
             } else liveDataToObserve.postValue(Error(Throwable()))
 
         }.start()
