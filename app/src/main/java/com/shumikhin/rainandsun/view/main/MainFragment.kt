@@ -21,6 +21,7 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
     private var isDataSetRus: Boolean = true
+
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(weather: Weather) {
             val manager = activity?.supportFragmentManager
