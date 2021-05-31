@@ -2,24 +2,17 @@ package com.shumikhin.rainandsun.view.details
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
+import com.google.android.material.snackbar.Snackbar
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentDetailsBinding
 import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.model.WeatherDTO
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.MalformedURLException
-import java.net.URL
-import java.util.stream.Collectors
-import javax.net.ssl.HttpsURLConnection
 
 
 class DetailsFragment : Fragment() {
@@ -35,6 +28,7 @@ class DetailsFragment : Fragment() {
 
             override fun onFailed(throwable: Throwable) {
                 //Обработка ошибки
+                errorProcessing(throwable)
             }
         }
 
@@ -82,6 +76,16 @@ class DetailsFragment : Fragment() {
             temperatureValue.text = weatherDTO.fact?.temp.toString()
             feelsLikeValue.text = weatherDTO.fact?.feels_like.toString()
         }
+    }
+
+    private fun errorProcessing(throwable: Throwable) {
+        Snackbar.make(
+            binding.mainView,
+            getString(R.string.server_connection_error),
+            Snackbar.LENGTH_INDEFINITE
+        ).show()
+        Log.e("onLoadListener.OnFailed", getString(R.string.server_connection_error), throwable)
+        throwable.printStackTrace()
     }
 
 }
