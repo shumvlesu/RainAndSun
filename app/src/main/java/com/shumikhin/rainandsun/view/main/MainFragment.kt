@@ -80,11 +80,11 @@ class MainFragment : Fragment() {
 
 
     // В качестве аргумента renderData
-//принимает объект, возвращаемый LiveData. Далее мы вызываем у созданной ViewModel метод
-//getData, который возвращает нам LiveData, и вызываем у LiveData метод observe, который и
-//передаём в жизненный цикл вместе с Observer’ом. Теперь, если данные, которые хранит LiveData,
-//изменятся, Observer сразу об этом узнает и вызовет метод renderData, в который передаст новые
-//данные.
+    //принимает объект, возвращаемый LiveData. Далее мы вызываем у созданной ViewModel метод
+    //getData, который возвращает нам LiveData, и вызываем у LiveData метод observe, который и
+    //передаём в жизненный цикл вместе с Observer’ом. Теперь, если данные, которые хранит LiveData,
+    //изменятся, Observer сразу об этом узнает и вызовет метод renderData, в который передаст новые
+    //данные.
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
