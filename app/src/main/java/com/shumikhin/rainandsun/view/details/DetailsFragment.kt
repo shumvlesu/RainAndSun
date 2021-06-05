@@ -192,6 +192,7 @@ class DetailsFragment : Fragment() {
             )
             binding.temperatureValue.text = temp.toString()
             binding.feelsLikeValue.text = feelsLike.toString()
+            //TODO Погодные условия, добавить и "обыграть" на форме
             //binding.weatherCondition.text = condition
         }
     }
