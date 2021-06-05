@@ -151,14 +151,13 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun errorProcessing(throwable: Throwable) {
+    private fun errorProcessing() {
         Snackbar.make(
             binding.mainView,
             getString(R.string.server_connection_error),
             Snackbar.LENGTH_INDEFINITE
         ).show()
-        Log.e("onLoadListener.OnFailed", getString(R.string.server_connection_error), throwable)
-        throwable.printStackTrace()
+        Log.e("onLoadListener.OnFailed", getString(R.string.server_connection_error))
     }
 
     private fun getWeather() {
@@ -181,7 +180,8 @@ class DetailsFragment : Fragment() {
         val feelsLike = fact.feels_like
         val condition = fact.condition
         if (temp == TEMP_INVALID || feelsLike == FEELS_LIKE_INVALID || condition == null) {
-            TODO("Обработка ошибки")
+            //TODO("Обработка ошибки")
+            errorProcessing()
         } else {
             val city = weatherBundle.city
             binding.cityName.text = city.city
