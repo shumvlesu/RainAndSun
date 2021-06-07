@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //дженерика указывается тип возвращаемых данных
 
 class RemoteDataSource {
+
     private val weatherApi = Retrofit.Builder()
         .baseUrl("https://api.weather.yandex.ru/")
         .addConverterFactory(

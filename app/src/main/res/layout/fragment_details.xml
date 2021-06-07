@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/TextStyle"
-    android:background="@color/fragmentBackground">
+    android:background="@color/fragmentBackground"
+    android:theme="@style/TextStyle">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -25,6 +25,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="60dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/sun"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,44 +57,74 @@
                 app:layout_constraintTop_toBottomOf="@+id/cityName"
                 tools:text="lt/ln: 55.755826, 37.617299900000035" />
 
+
             <TextView
                 android:id="@+id/temperatureValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:textSize="@dimen/temperature_value_text_size"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.59"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
                 tools:text="+15" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/weatherIcon"
+                android:layout_width="@dimen/weather_icon_width"
+                android:layout_height="@dimen/weather_icon_height"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.397"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
+                app:layout_constraintVertical_bias="0.0"
+                tools:srcCompat="@drawable/rain" />
 
-            <TextView
-                android:id="@+id/feelsLikeLabel"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/weatherCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/feels_like_label"
-                app:layout_constraintBottom_toBottomOf="@+id/feelsLikeValue"
-                app:layout_constraintEnd_toStartOf="@+id/feelsLikeValue"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="@dimen/weather_icon_margin"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.114"
+                tools:text="Облачно" />
 
             <TextView
                 android:id="@+id/feelsLikeValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="2dp"
                 android:textSize="@dimen/feels_like_text_size"
                 android:textStyle="bold"
+
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/feelsLikeLabel"
-                app:layout_constraintTop_toBottomOf="@+id/temperatureValue"
+                app:layout_constraintHorizontal_bias="0.641"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.298"
                 tools:text="-23" />
+
+            <TextView
+                android:id="@+id/feelsLikeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:text="@string/feels_like_label"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.425"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.307" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

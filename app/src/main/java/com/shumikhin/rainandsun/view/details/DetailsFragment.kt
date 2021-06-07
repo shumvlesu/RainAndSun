@@ -1,5 +1,6 @@
 package com.shumikhin.rainandsun.view.details
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +10,14 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentDetailsBinding
 import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.utils.showSnackBar
 import com.shumikhin.rainandsun.viewmodel.AppState
 import com.shumikhin.rainandsun.viewmodel.DetailsViewModel
+import kotlinx.android.synthetic.main.fragment_details.*
 
 const val DETAILS_INTENT_FILTER = "DETAILS INTENT FILTER"
 const val DETAILS_LOAD_RESULT_EXTRA = "LOAD RESULT"
@@ -93,7 +96,12 @@ class DetailsFragment : Fragment() {
                 binding.mainView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload),
-                    { viewModel.getWeatherFromRemoteSource(weatherBundle.city.lat, weatherBundle.city.lon) })
+                    {
+                        viewModel.getWeatherFromRemoteSource(
+                            weatherBundle.city.lat,
+                            weatherBundle.city.lon
+                        )
+                    })
             }
         }
 
@@ -107,9 +115,19 @@ class DetailsFragment : Fragment() {
             city.lat.toString(),
             city.lon.toString()
         )
-        binding.temperatureValue.text = weather.temperature.toString()
-        binding.feelsLikeValue.text = weather.feelsLike.toString()
-        //binding.weatherCondition.text = weather.condition
-    }
 
+        weather.icon?.let {
+            GlideToVectorYou.justLoadImage(
+                activity,
+                Uri.parse("https://yastatic.net/weather/i/icons/blueye/color/svg/${it}.svg"),
+                weatherIcon
+            )
+            binding.temperatureValue.text = weather.temperature.toString()
+            binding.feelsLikeValue.text = weather.feelsLike.toString()
+            //TODO Русифицировать
+            // (https://yandex.ru/dev/weather/doc/dg/concepts/forecast-info.html#resp-format__forecasts-night-condition)
+            binding.weatherCondition.text = weather.condition
+        }
+
+    }
 }

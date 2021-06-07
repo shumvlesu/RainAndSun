@@ -18,6 +18,9 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        //Для подгрузки иконок погоды
+        //GlideToVectorYou
+        maven { url 'https://jitpack.io' }
 
     }
 }
