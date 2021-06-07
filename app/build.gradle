@@ -47,10 +47,23 @@ android {
 //        targetCompatibility kotlin_version
 //    }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+//    kotlinOptions {
+//        jvmTarget = '1.8'
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 }
+
+
+
+
 
 dependencies {
 
@@ -72,5 +85,8 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     //GSON
     implementation 'com.google.code.gson:gson:2.8.6'
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+
 
 }

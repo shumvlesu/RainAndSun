@@ -1,7 +1,6 @@
 package com.shumikhin.rainandsun.viewmodel
 
 import com.shumikhin.rainandsun.model.Weather
-import java.lang.Error
 
 sealed class AppState {
     data class Success(val weatherData: List<Weather>) : AppState()

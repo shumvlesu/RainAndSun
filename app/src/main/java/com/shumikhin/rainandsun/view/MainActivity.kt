@@ -2,11 +2,10 @@ package com.shumikhin.rainandsun.view
 
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.shumikhin.rainandsun.databinding.MainActivityBinding
 import com.shumikhin.rainandsun.view.details.ConnectivityBroadcastReceiverPrimer
-import com.shumikhin.rainandsun.view.details.DetailsFragment
 import com.shumikhin.rainandsun.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {

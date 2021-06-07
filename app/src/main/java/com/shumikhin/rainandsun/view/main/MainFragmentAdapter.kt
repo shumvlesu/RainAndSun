@@ -24,7 +24,8 @@ class MainFragmentAdapter(private var onItemViewClickListener: MainFragment.OnIt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.fragment_main_recycler_item, parent, false) as View
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.fragment_main_recycler_item, parent, false) as View
         )
     }
 
@@ -43,8 +44,9 @@ class MainFragmentAdapter(private var onItemViewClickListener: MainFragment.OnIt
             // itemView.setOnClickListener {onItemViewClickListener?.onItemViewClick(weather)}
             //Оптимизируем extension функцией apply
             itemView.apply {
-                findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text = weather.city.city
-                setOnClickListener {onItemViewClickListener?.onItemViewClick(weather)}
+                findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text =
+                    weather.city.city
+                setOnClickListener { onItemViewClickListener?.onItemViewClick(weather) }
             }
         }
     }

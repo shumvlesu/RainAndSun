@@ -14,7 +14,6 @@ import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.view.details.DetailsFragment
 import com.shumikhin.rainandsun.viewmodel.AppState
 import com.shumikhin.rainandsun.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : Fragment() {
 

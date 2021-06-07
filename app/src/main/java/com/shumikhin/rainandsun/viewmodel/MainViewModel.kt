@@ -2,14 +2,14 @@ package com.shumikhin.rainandsun.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.shumikhin.rainandsun.model.Repository
-import com.shumikhin.rainandsun.model.RepositoryImpl
+import com.shumikhin.rainandsun.repository.MainRepository
+import com.shumikhin.rainandsun.repository.MainRepositoryImpl
 import com.shumikhin.rainandsun.viewmodel.AppState.Error
 import java.lang.Thread.sleep
 
 class MainViewModel(
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val repositoryImpl: Repository = RepositoryImpl()
+    private val mainRepositoryImpl: MainRepository = MainRepositoryImpl()
 ) : ViewModel() {
 
     fun getLiveData() = liveDataToObserve
@@ -30,7 +30,7 @@ class MainViewModel(
                 liveDataToObserve.postValue(
                     AppState.Success(
                         if (isRussian)
-                            repositoryImpl.getWeatherFromLocalStorageRus() else repositoryImpl.getWeatherFromLocalStorageWorld()
+                            mainRepositoryImpl.getWeatherFromLocalStorageRus() else mainRepositoryImpl.getWeatherFromLocalStorageWorld()
                     )
                 )
             } else liveDataToObserve.postValue(Error(Throwable()))
