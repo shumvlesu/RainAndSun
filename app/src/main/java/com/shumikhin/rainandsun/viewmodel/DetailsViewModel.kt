@@ -28,7 +28,7 @@ class DetailsViewModel(
     private val detailsRepositoryImpl: DetailsRepository = DetailsRepositoryImpl(RemoteDataSource())
 ) : ViewModel() {
 
-    fun getLiveData() = detailsLiveData
+    //fun getLiveData() = detailsLiveData
     fun getWeatherFromRemoteSource(lat: Double, lon: Double) {
         detailsLiveData.value = AppState.Loading
         detailsRepositoryImpl.getWeatherDetailsFromServer(lat, lon, callBack)
