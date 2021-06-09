@@ -51,13 +51,11 @@ class DetailsViewModel(
 
         }
 
+        //Вызывается только тогда по каким то причинам не получилось связаться с сервером
+        //трафик закончился,"прилег" сервак, инета нет и т.п.
         override fun onFailure(call: Call<WeatherDTO>, t: Throwable) {
             detailsLiveData.postValue(
-                AppState.Error(
-                    Throwable(
-                        t?.message ?: REQUEST_ERROR
-                    )
-                )
+                AppState.Error(Throwable(t?.message ?: REQUEST_ERROR))
             )
         }
 
