@@ -101,7 +101,7 @@ class MainFragment : Fragment() {
     //Сохраняем настройки в SharedPreference
     private fun saveListOfTowns() {
         activity?.let {
-            with(it.getPreferences(Context.MODE_PRIVATE).edit()) { //Получить Preferences
+            with(it.getPreferences(Context.MODE_PRIVATE).edit()) { //Получить Preferences. Оставшиеся ключи кроме  MODE_PRIVATE устарели.
                 putBoolean(IS_WORLD_KEY, !isDataSetRus) //Сохранить настройки
                 apply() // Сохранение при помощи команды commit немедленное в основном потоке, apply — асинхронное
             }
