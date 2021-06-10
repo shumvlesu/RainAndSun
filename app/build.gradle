@@ -2,7 +2,11 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     //Kotlin Android Extensions (библиотека расширений для Андроид) — будем сразу передавать parcelable-объект.
-    id 'kotlin-android-extensions'
+    id 'kotlin-android-extensions' //- уже деприкейтед
+    //id 'kotlin-parcelize'
+
+    //Чтобы использовать Room
+    id 'kotlin-kapt'
 }
 
 android {
@@ -92,4 +96,7 @@ dependencies {
     //implementation 'com.squareup.picasso:picasso:2.71828'
     //GlideToVectorYou
     implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
+    //Room
+    implementation 'androidx.room:room-runtime:2.3.0'
+    kapt 'androidx.room:room-compiler:2.3.0'
 }
