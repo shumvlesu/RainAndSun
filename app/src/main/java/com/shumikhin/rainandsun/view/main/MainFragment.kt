@@ -1,5 +1,6 @@
 package com.shumikhin.rainandsun.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.shumikhin.rainandsun.view.details.DetailsFragment
 import com.shumikhin.rainandsun.viewmodel.AppState
 import com.shumikhin.rainandsun.viewmodel.MainViewModel
 
+private const val IS_WORLD_KEY = "LIST_OF_TOWNS_KEY"
+
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
@@ -23,6 +26,8 @@ class MainFragment : Fragment() {
     //private lateinit var viewModel: MainViewModel
     private val viewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
     private var isDataSetRus: Boolean = true
+    //private var isDataSetWorld: Boolean = false
+
 
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(weather: Weather) {
@@ -60,8 +65,21 @@ class MainFragment : Fragment() {
         binding.mainFragmentFAB.setOnClickListener { changeWeatherDataSet() }
         //viewModel = ViewModelProvider(this).get(MainViewModel::class.java) //сделана ленивая инициализация в стр.24 у переменной viewModel
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-        viewModel.getWeatherFromLocalSourceRus()
+        //viewModel.getWeatherFromLocalSourceRus()
+        showListOfTowns()
+
     }
+
+    private fun showListOfTowns() {
+        activity?.let {
+            if (it.getPreferences(Context.MODE_PRIVATE).getBoolean(IS_WORLD_KEY, false)) {//значения там нет, то возвращаем false по умолчанию
+                changeWeatherDataSet()
+            } else {
+                viewModel.getWeatherFromLocalSourceRus()
+            }
+        }
+    }
+
 
     override fun onDestroy() {
         adapter.removeListener()
@@ -75,8 +93,20 @@ class MainFragment : Fragment() {
         } else {
             viewModel.getWeatherFromLocalSourceRus()
             binding.mainFragmentFAB.setImageResource(R.drawable.ic_russia)
-        }.also { isDataSetRus = !isDataSetRus }
+        }.also {
+            isDataSetRus = !isDataSetRus
+            saveListOfTowns()
+        }
 
+    //Сохраняем настройки в SharedPreference
+    private fun saveListOfTowns() {
+        activity?.let {
+            with(it.getPreferences(Context.MODE_PRIVATE).edit()) { //Получить Preferences
+                putBoolean(IS_WORLD_KEY, !isDataSetRus) //Сохранить настройки
+                apply() // Сохранение при помощи команды commit немедленное в основном потоке, apply — асинхронное
+            }
+        }
+    }
 
     // В качестве аргумента renderData
     //принимает объект, возвращаемый LiveData. Далее мы вызываем у созданной ViewModel метод
