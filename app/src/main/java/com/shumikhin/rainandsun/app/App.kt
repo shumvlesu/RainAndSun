@@ -30,6 +30,7 @@ class App : Application(){
                             HistoryDataBase::class.java, //База
                             DB_NAME) //Имя БД
                             .allowMainThreadQueries() //Метод allowMainThreadQueries позволяет делать запросы из основного потока
+                            //.fallbackToDestructiveMigration() - этот ключ говорит что если версия бд изменилась то предыдущую удаляем.
                             .build()
 
                     }

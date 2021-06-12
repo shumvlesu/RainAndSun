@@ -13,4 +13,6 @@
     <dimen name="weather_icon_width">54dp</dimen>
     <dimen name="weather_icon_height">54dp</dimen>
     <dimen name="weather_icon_margin">110dp</dimen>
+    <dimen name="hairline">1dp</dimen>
+    <dimen name="margin_5_dp">5dp</dimen>
 </resources>
