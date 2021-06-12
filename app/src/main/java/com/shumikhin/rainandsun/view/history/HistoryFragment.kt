@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentHistoryBinding
 import com.shumikhin.rainandsun.utils.showSnackBar
-import com.shumikhin.rainandsun.viewmodel.AppState
+import com.shumikhin.rainandsun.app.AppState
 import com.shumikhin.rainandsun.viewmodel.HistoryViewModel
 import kotlinx.android.synthetic.main.fragment_history.*
 

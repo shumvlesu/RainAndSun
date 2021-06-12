@@ -13,7 +13,7 @@ import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentMainBinding
 import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.view.details.DetailsFragment
-import com.shumikhin.rainandsun.viewmodel.AppState
+import com.shumikhin.rainandsun.app.AppState
 import com.shumikhin.rainandsun.viewmodel.MainViewModel
 
 private const val IS_WORLD_KEY = "LIST_OF_TOWNS_KEY"

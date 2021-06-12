@@ -1,4 +1,4 @@
-package com.shumikhin.rainandsun.viewmodel
+package com.shumikhin.rainandsun.app
 
 import com.shumikhin.rainandsun.model.Weather
 

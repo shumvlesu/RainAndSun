@@ -2,9 +2,10 @@ package com.shumikhin.rainandsun.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.shumikhin.rainandsun.app.AppState
 import com.shumikhin.rainandsun.repository.MainRepository
 import com.shumikhin.rainandsun.repository.MainRepositoryImpl
-import com.shumikhin.rainandsun.viewmodel.AppState.Error
+import com.shumikhin.rainandsun.app.AppState.Error
 import java.lang.Thread.sleep
 
 class MainViewModel(
