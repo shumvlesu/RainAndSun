@@ -28,17 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="@dimen/fab_icon_size"/>
 
-    <FrameLayout
-        android:id="@+id/mainFragmentLoadingLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible">
+    <include
+        android:id="@+id/includedLoadingLayout"
+        layout="@layout/loading_layout" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

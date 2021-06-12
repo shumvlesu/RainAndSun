@@ -118,14 +118,17 @@ class MainFragment : Fragment() {
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
-                binding.mainFragmentLoadingLayout.visibility = View.GONE
+                //binding.mainFragmentLoadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 adapter.setWeather(appState.weatherData)
             }
             is AppState.Loading -> {
-                binding.mainFragmentLoadingLayout.visibility = View.VISIBLE
+                //binding.mainFragmentLoadingLayout.visibility = View.VISIBLE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
             }
             is AppState.Error -> {
-                binding.mainFragmentLoadingLayout.visibility = View.GONE
+                //binding.mainFragmentLoadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 // Snackbar.make(
                 //  binding.mainFragmentFAB,
                 // getString(R.string.error),
@@ -134,7 +137,8 @@ class MainFragment : Fragment() {
                 // .setAction(getString(R.string.reload)) { viewModel.getWeatherFromLocalSourceRus() }
                 // .show()
 
-                binding.mainFragmentLoadingLayout.showSnackBar(
+                //binding.mainFragmentLoadingLayout.showSnackBar(
+                binding.mainFragmentRootView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload),
                     { viewModel.getWeatherFromLocalSourceRus() })

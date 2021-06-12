@@ -128,19 +128,9 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:id="@+id/loadingLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </FrameLayout>
+        <include
+            android:id="@+id/includedLoadingLayout"
+            layout="@layout/loading_layout" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

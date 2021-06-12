@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentDetailsBinding
+import com.shumikhin.rainandsun.model.City
 import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.utils.showSnackBar
 import com.shumikhin.rainandsun.viewmodel.AppState
@@ -82,16 +83,19 @@ class DetailsFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                //binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 setWeather(appState.weatherData[0])
             }
             is AppState.Loading -> {
                 binding.mainView.visibility = View.GONE
-                binding.loadingLayout.visibility = View.VISIBLE
+                //binding.loadingLayout.visibility = View.VISIBLE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
             }
             is AppState.Error -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                //binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 //extension-функция showSnackBar
                 binding.mainView.showSnackBar(
                     getString(R.string.error),
@@ -109,6 +113,7 @@ class DetailsFragment : Fragment() {
 
     private fun setWeather(weather: Weather) {
         val city = weatherBundle.city
+        saveCity(city, weather)
         binding.cityName.text = city.city
         binding.cityCoordinates.text = String.format(
             getString(R.string.city_coordinates),
@@ -130,4 +135,19 @@ class DetailsFragment : Fragment() {
         }
 
     }
+
+    private fun saveCity(
+        city: City,
+        weather: Weather
+    ) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
+    }
+
 }
