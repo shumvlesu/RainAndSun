@@ -10,4 +10,5 @@
     <string name="fab">FAB</string>
     <string name="yes">Да</string>
     <string name="server_connection_error">Ошибка ответа от сервера.</string>
+    <string name="menu_title_history">history</string>
 </resources>
