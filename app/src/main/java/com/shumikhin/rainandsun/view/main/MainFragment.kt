@@ -70,6 +70,7 @@ class MainFragment : Fragment() {
 
     }
 
+    //Пытаемся получить настройки из SharedPreferences
     private fun showListOfTowns() {
         activity?.let {
             if (it.getPreferences(Context.MODE_PRIVATE).getBoolean(IS_WORLD_KEY, false)) {//значения там нет, то возвращаем false по умолчанию
