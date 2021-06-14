@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.MainActivityBinding
+import com.shumikhin.rainandsun.view.cotacts.ContentProviderFragment
 import com.shumikhin.rainandsun.view.details.ConnectivityBroadcastReceiverPrimer
 import com.shumikhin.rainandsun.view.history.HistoryFragment
 import com.shumikhin.rainandsun.view.main.MainFragment
@@ -48,6 +49,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                         .add(R.id.container, HistoryFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
+            R.id.menu_content_provider -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, ContentProviderFragment.newInstance())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }

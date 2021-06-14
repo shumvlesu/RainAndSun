@@ -15,4 +15,5 @@
     <dimen name="weather_icon_margin">110dp</dimen>
     <dimen name="hairline">1dp</dimen>
     <dimen name="margin_5_dp">5dp</dimen>
+    <dimen name="contacts_text_size">10sp</dimen>
 </resources>
