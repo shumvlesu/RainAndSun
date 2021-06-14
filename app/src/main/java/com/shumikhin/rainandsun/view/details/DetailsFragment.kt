@@ -124,7 +124,7 @@ class DetailsFragment : Fragment() {
         weather.icon?.let {
             GlideToVectorYou.justLoadImage(
                 activity,
-                Uri.parse("https://yastatic.net/weather/i/icons/blueye/color/svg/${it}.svg"),
+                Uri.parse("https://yastatic.net/weather/i/icons/blueye/color/svg/$it.svg"),
                 weatherIcon
             )
             binding.temperatureValue.text = weather.temperature.toString()
