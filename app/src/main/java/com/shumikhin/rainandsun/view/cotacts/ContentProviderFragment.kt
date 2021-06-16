@@ -44,7 +44,7 @@ class ContentProviderFragment : Fragment() {
         context?.let {
             when {
                 ContextCompat.checkSelfPermission(it, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED -> {
-                    //Доступ к контактам на телефоне есть
+                    //Доступ к контактам на телефоне дан пользователем
                     getContacts()
                 }
                 //Опционально: если нужно пояснение перед запросом разрешений
@@ -60,7 +60,7 @@ class ContentProviderFragment : Fragment() {
                         .show()
                 }
                 else -> {
-                    //Запрашиваем разрешение
+                    //Запрашиваем разрешение без пояснения зачем нам нужны контакты
                     requestPermission()
                 }
             }
