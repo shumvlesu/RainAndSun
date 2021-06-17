@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentContentProviderBinding
 
-const val REQUEST_CODE = 42
+const val REQUEST_CODE = 42 //42 ничего не значит, это просто идентефикатор что бы понять по какому запросу доступа прилетел ответ.
 
 
 class ContentProviderFragment : Fragment() {
