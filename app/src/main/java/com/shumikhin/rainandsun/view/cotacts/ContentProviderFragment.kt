@@ -39,7 +39,8 @@ class ContentProviderFragment : Fragment() {
         checkPermission()
     }
 
-    // Проверяем, разрешено ли чтение контактов
+    // Проверяем, разрешено ли чтение контактов, если нет то рассказываем пользователю
+    // о том зачем нам нужно разрешение
     private fun checkPermission() {
         context?.let {
             when {
@@ -67,6 +68,7 @@ class ContentProviderFragment : Fragment() {
         }
     }
 
+    //Здесь собственно запускаем служебное окно о доступе. Ответ, нажал пользователь или нет, прилетает в onRequestPermissionsResult.
     private fun requestPermission() {
         requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS), REQUEST_CODE)
     }
