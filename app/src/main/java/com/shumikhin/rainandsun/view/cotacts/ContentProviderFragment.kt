@@ -108,9 +108,9 @@ class ContentProviderFragment : Fragment() {
             val cursorWithContacts: Cursor? = contentResolver.query(
                 ContactsContract.Contacts.CONTENT_URI,
                 null,
+                null,// здесь какие либо отборы указываем
                 null,
-                null,
-                ContactsContract.Contacts.DISPLAY_NAME + " ASC"
+                ContactsContract.Contacts.DISPLAY_NAME + " ASC"//как сортировать
             )
 
             cursorWithContacts?.let { cursor ->
