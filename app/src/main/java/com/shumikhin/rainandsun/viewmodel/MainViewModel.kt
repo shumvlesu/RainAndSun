@@ -24,9 +24,9 @@ class MainViewModel(
         //Ставим статус в загрузку.
         liveDataToObserve.value = AppState.Loading
         Thread {
-            sleep(1000)
-            val randomResult = (0..1).random()
-            if (randomResult == 1) {
+            //sleep(1000)
+            //val randomResult = (0..1).random()
+            //if (randomResult == 1) {
                 //Если данные были получены, состояние меняется на Success.
                 liveDataToObserve.postValue(
                     AppState.Success(
@@ -34,7 +34,7 @@ class MainViewModel(
                             mainRepositoryImpl.getWeatherFromLocalStorageRus() else mainRepositoryImpl.getWeatherFromLocalStorageWorld()
                     )
                 )
-            } else liveDataToObserve.postValue(Error(Throwable()))
+            //} else liveDataToObserve.postValue(Error(Throwable()))
 
         }.start()
     }

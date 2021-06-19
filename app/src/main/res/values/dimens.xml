@@ -16,4 +16,5 @@
     <dimen name="hairline">1dp</dimen>
     <dimen name="margin_5_dp">5dp</dimen>
     <dimen name="contacts_text_size">10sp</dimen>
+    <dimen name="fab_location_icon_size">45dp</dimen>
 </resources>
