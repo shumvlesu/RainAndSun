@@ -37,6 +37,7 @@ class GoogleMapsFragment : Fragment() {
         //Пермещаемся к маркеру
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(initialPlace))//CameraUpdateFactory.* - Методы как перемещаем камеру
 
+        //Назначаем слушатель
         googleMap.setOnMapLongClickListener { latLng ->
             getAddressAsync(latLng)
             addMarkerToArray(latLng)
