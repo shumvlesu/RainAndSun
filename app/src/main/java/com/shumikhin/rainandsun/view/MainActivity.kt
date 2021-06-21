@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.shumikhin.rainandsun.GoogleMapsFragment
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.MainActivityBinding
 import com.shumikhin.rainandsun.view.cotacts.ContentProviderFragment
@@ -58,6 +59,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                         .add(R.id.container, ContentProviderFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
+            R.id.menu_google_maps -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, GoogleMapsFragment.newInstance())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
