@@ -101,13 +101,15 @@ class GoogleMapsFragment : Fragment() {
         }
     }
 
+    //По ширине и долготе мы можем получить адресс того что там находится (Геокодирование (Geocoder))
     private fun getAddressAsync(location: LatLng) {
         context?.let {
             val geoCoder = Geocoder(it)
             Thread {
                 try {
-                    val addresses =
-                        geoCoder.getFromLocation(location.latitude, location.longitude, 1)
+                    //Получаем адресс
+                    val addresses = geoCoder.getFromLocation(location.latitude, location.longitude, 1)
+                    //Помещаем его в тек строку адреса вьюхи в гл потоке
                     textAddress.post { textAddress.text = addresses[0].getAddressLine(0) }
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -152,6 +154,7 @@ class GoogleMapsFragment : Fragment() {
         context?.let {
             val isPermissionGranted = ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_FINE_LOCATION) ==  PackageManager.PERMISSION_GRANTED
             googleMap.isMyLocationEnabled = isPermissionGranted
+            //разрешаем показать кнопочку моего положения
             googleMap.uiSettings.isMyLocationButtonEnabled = isPermissionGranted
         }
         //Получить разрешение, если его нет
