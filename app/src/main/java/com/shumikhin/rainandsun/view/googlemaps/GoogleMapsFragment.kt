@@ -1,4 +1,4 @@
-package com.shumikhin.rainandsun
+package com.shumikhin.rainandsun.view.googlemaps
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.databinding.FragmentGoogleMapsMainBinding
 import kotlinx.android.synthetic.main.fragment_google_maps_main.*
 import java.io.IOException
@@ -149,9 +150,7 @@ class GoogleMapsFragment : Fragment() {
 
     private fun activateMyLocation(googleMap: GoogleMap) {
         context?.let {
-            val isPermissionGranted =
-                ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_FINE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED
+            val isPermissionGranted = ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_FINE_LOCATION) ==  PackageManager.PERMISSION_GRANTED
             googleMap.isMyLocationEnabled = isPermissionGranted
             googleMap.uiSettings.isMyLocationButtonEnabled = isPermissionGranted
         }
