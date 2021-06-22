@@ -7,7 +7,6 @@ plugins {
 
     //Чтобы использовать Room
     id 'kotlin-kapt'
-    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 
 android {
@@ -102,5 +101,5 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.3.0'
     kapt 'androidx.room:room-compiler:2.3.0'
     //GoogleMaps
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }
