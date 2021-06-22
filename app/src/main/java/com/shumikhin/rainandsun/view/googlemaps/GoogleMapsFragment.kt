@@ -109,7 +109,7 @@ class GoogleMapsFragment : Fragment() {
                 try {
                     //Получаем адресс
                     val addresses = geoCoder.getFromLocation(location.latitude, location.longitude, 1)
-                    //Помещаем его в тек строку адреса вьюхи в гл потоке
+                    //Помещаем его в тек строку адреса вьюхи в гл потоке. одной строкой
                     textAddress.post { textAddress.text = addresses[0].getAddressLine(0) }
                 } catch (e: IOException) {
                     e.printStackTrace()
