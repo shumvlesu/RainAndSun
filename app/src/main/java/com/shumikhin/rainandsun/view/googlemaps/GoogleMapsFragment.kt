@@ -70,7 +70,7 @@ class GoogleMapsFragment : Fragment() {
             val searchText = searchAddress.text.toString()
             Thread {
                 try {
-                    val addresses = geoCoder.getFromLocationName(searchText, 1)
+                    val addresses = geoCoder.getFromLocationName(searchText, 1)//максимальное количество адресов которое можно вернуть
                     if (addresses.size > 0) {
                         goToAddress(addresses, it, searchText)
                     }
