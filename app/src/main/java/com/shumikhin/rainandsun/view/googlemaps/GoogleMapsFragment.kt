@@ -118,6 +118,7 @@ class GoogleMapsFragment : Fragment() {
         }
     }
 
+    //Создаем маркер с текстом и картинкой
     private fun addMarkerToArray(location: LatLng) {
         val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin)
         markers.add(marker)
@@ -136,6 +137,7 @@ class GoogleMapsFragment : Fragment() {
         )
     }
 
+    //Рисуем линию между маркерами
     private fun drawLine() {
         val last: Int = markers.size - 1
         if (last >= 1) {
