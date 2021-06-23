@@ -145,8 +145,7 @@ class GoogleMapsFragment : Fragment() {
             is AppState.Success -> {
                 val temperature = appState.weatherData[0].temperature
                 Toast.makeText(context, "Температура - $temperature", Toast.LENGTH_LONG).show()
-                val marker =
-                    setMarker(location, markers.size.toString(), R.drawable.ic_map_pin, temperature)
+                val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin, temperature)
                 markers.add(marker)
             }
             is AppState.Loading -> {
