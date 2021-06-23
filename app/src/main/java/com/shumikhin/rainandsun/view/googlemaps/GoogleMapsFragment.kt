@@ -2,11 +2,9 @@ package com.shumikhin.rainandsun.view.googlemaps
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,9 +22,7 @@ import com.google.android.gms.maps.model.*
 import com.shumikhin.rainandsun.R
 import com.shumikhin.rainandsun.app.AppState
 import com.shumikhin.rainandsun.databinding.FragmentGoogleMapsMainBinding
-import com.shumikhin.rainandsun.model.Weather
 import com.shumikhin.rainandsun.viewmodel.DetailsViewModel
-import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.android.synthetic.main.fragment_google_maps_main.*
 import java.io.IOException
 
@@ -83,7 +78,10 @@ class GoogleMapsFragment : Fragment() {
             val searchText = searchAddress.text.toString()
             Thread {
                 try {
-                    val addresses = geoCoder.getFromLocationName(searchText, 1)//максимальное количество адресов которое можно вернуть
+                    val addresses = geoCoder.getFromLocationName(
+                        searchText,
+                        1
+                    )//максимальное количество адресов которое можно вернуть
                     if (addresses.size > 0) {
                         goToAddress(addresses, it, searchText)
                     }
@@ -121,7 +119,8 @@ class GoogleMapsFragment : Fragment() {
             Thread {
                 try {
                     //Получаем адресс
-                    val addresses = geoCoder.getFromLocation(location.latitude, location.longitude, 1)
+                    val addresses =
+                        geoCoder.getFromLocation(location.latitude, location.longitude, 1)
                     //Помещаем его в тек строку адреса вьюхи в гл потоке. одной строкой
                     textAddress.post { textAddress.text = addresses[0].getAddressLine(0) }
                 } catch (e: IOException) {
@@ -132,11 +131,9 @@ class GoogleMapsFragment : Fragment() {
     }
 
 
-
-
     //Создаем маркер с текстом и картинкой
     private fun addMarkerToArray(location: LatLng) {
-        viewModel.detailsLiveData.observe(viewLifecycleOwner, Observer { renderData(it,location) })
+        viewModel.detailsLiveData.observe(viewLifecycleOwner, Observer { renderData(it, location) })
         viewModel.getWeatherFromRemoteSource(location.latitude, location.longitude)
 
 //        val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin)
@@ -147,8 +144,9 @@ class GoogleMapsFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 val temperature = appState.weatherData[0].temperature
-                Toast.makeText(context,"Температура - $temperature", Toast.LENGTH_LONG).show()
-                val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin, temperature)
+                Toast.makeText(context, "Температура - $temperature", Toast.LENGTH_LONG).show()
+                val marker =
+                    setMarker(location, markers.size.toString(), R.drawable.ic_map_pin, temperature)
                 markers.add(marker)
             }
             is AppState.Loading -> {
@@ -194,7 +192,10 @@ class GoogleMapsFragment : Fragment() {
 
     private fun activateMyLocation(googleMap: GoogleMap) {
         context?.let {
-            val isPermissionGranted = ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_FINE_LOCATION) ==  PackageManager.PERMISSION_GRANTED
+            val isPermissionGranted = ContextCompat.checkSelfPermission(
+                it,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
             googleMap.isMyLocationEnabled = isPermissionGranted
             //разрешаем показать кнопочку моего положения
             googleMap.uiSettings.isMyLocationButtonEnabled = isPermissionGranted
