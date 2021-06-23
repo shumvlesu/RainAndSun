@@ -2,22 +2,32 @@ package com.shumikhin.rainandsun.view.googlemaps
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.shumikhin.rainandsun.R
+import com.shumikhin.rainandsun.app.AppState
 import com.shumikhin.rainandsun.databinding.FragmentGoogleMapsMainBinding
+import com.shumikhin.rainandsun.model.Weather
+import com.shumikhin.rainandsun.viewmodel.DetailsViewModel
+import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.android.synthetic.main.fragment_google_maps_main.*
 import java.io.IOException
 
@@ -27,6 +37,8 @@ class GoogleMapsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var map: GoogleMap
     private val markers: ArrayList<Marker> = arrayListOf()
+    private val viewModel: DetailsViewModel by lazy { ViewModelProvider(this).get(DetailsViewModel::class.java) }
+
 
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
@@ -62,6 +74,7 @@ class GoogleMapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
         initSearchByAddress()
+
     }
 
     private fun initSearchByAddress() {
@@ -91,7 +104,7 @@ class GoogleMapsFragment : Fragment() {
             addresses[0].longitude
         )
         view.post {
-            setMarker(location, searchText, R.drawable.ic_map_marker)
+            setMarker(location, searchText, R.drawable.ic_map_marker, 0)
             map.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
                     location,
@@ -118,24 +131,51 @@ class GoogleMapsFragment : Fragment() {
         }
     }
 
+
+
+
     //Создаем маркер с текстом и картинкой
     private fun addMarkerToArray(location: LatLng) {
-        val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin)
-        markers.add(marker)
+        viewModel.detailsLiveData.observe(viewLifecycleOwner, Observer { renderData(it,location) })
+        viewModel.getWeatherFromRemoteSource(location.latitude, location.longitude)
+
+//        val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin)
+//        markers.add(marker)
     }
+
+    private fun renderData(appState: AppState, location: LatLng) {
+        when (appState) {
+            is AppState.Success -> {
+                val temperature = appState.weatherData[0].temperature
+                Toast.makeText(context,"Температура - $temperature", Toast.LENGTH_LONG).show()
+                val marker = setMarker(location, markers.size.toString(), R.drawable.ic_map_pin, temperature)
+                markers.add(marker)
+            }
+            is AppState.Loading -> {
+
+            }
+            is AppState.Error -> {
+
+            }
+        }
+    }
+
 
     private fun setMarker(
         location: LatLng,
         searchText: String,
-        resourceId: Int
+        resourceId: Int,
+        temperature: Int?
     ): Marker {
         return map.addMarker(
             MarkerOptions()
                 .position(location)
-                .title(searchText)
+                //.title(searchText)
+                .title("$searchText $temperature")
                 .icon(BitmapDescriptorFactory.fromResource(resourceId))
         )
     }
+
 
     //Рисуем линию между маркерами
     private fun drawLine() {
