@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "55310331541",
+    "project_id": "optical-psyche-317509",
+    "storage_bucket": "optical-psyche-317509.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55310331541:android:73604823fe1acab3e4f59c",
+        "android_client_info": {
+          "package_name": "com.shumikhin.rainandsun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55310331541-j9j37vrl751aivjl3n8r2sm2llthn98r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRZpPuCIAnbcI_-JwqeyFFi1ZvEPXuAcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55310331541-j9j37vrl751aivjl3n8r2sm2llthn98r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

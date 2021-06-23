@@ -19,6 +19,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RainAndSun">
+        <!-- <service-->
+        <!--    android:name=".MyFirebaseMessagingService"-->
+        <!--    android:enabled="true"-->
+        <!--    android:exported="true"></service>-->
+
+        <!-- Надо зайти в манифест и исправить там декларацию сервиса для получения сообщения от Firebase когда приложение и открыто-->
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
