@@ -34,6 +34,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            versionNameSuffix "-debug"
+        }
+
+        staging {
+            initWith debug
+            versionNameSuffix "-staging"
+        }
+
     }
 
     //Мы создаём класс Properties —
@@ -64,6 +74,17 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    flavorDimensions 'version'
+    productFlavors {
+        free {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+        paid {
+            dimension 'version'
+            versionNameSuffix '.paid'
+        }
+    }
 }
 
 
